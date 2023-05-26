@@ -1,0 +1,6 @@
+/nbproject/
+/build/
+/dist/
+/nb-configuration.xml
+*.log
+/private/
