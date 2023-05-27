@@ -1,7 +1,5 @@
 package common.code;
 
-import common.gui.LoginForm;
-
 public class Auth {
     private static UserProfile loggedUser;
 
@@ -16,5 +14,6 @@ public class Auth {
     public static void logout() {
         loggedUser = null;
     }
+   
 }
 

@@ -34,7 +34,9 @@ public class AdminDashboard extends javax.swing.JFrame implements DashboardOpera
         initComponents();
         setAvatar();
         updateEmail();
+        setCounts();
     }
+
 
     @Override
     public void setAvatar() {
@@ -47,6 +49,13 @@ public class AdminDashboard extends javax.swing.JFrame implements DashboardOpera
         lable_username.setText(loggedUser.getEmail());
     }
     
+    
+    public void setCounts(){
+        students_count.setText(admin.getStudent_count());
+        lecturers_count.setText(admin.getLecturer_count());
+        courses_count.setText(admin.getCourses_count());
+    }
+        
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -61,7 +70,16 @@ public class AdminDashboard extends javax.swing.JFrame implements DashboardOpera
         lec = new javax.swing.JLabel();
         course = new javax.swing.JLabel();
         notification = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        btn_course = new javax.swing.JButton();
+        btn_timetable = new javax.swing.JButton();
+        btn_notification = new javax.swing.JButton();
+        btn_user = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         btn_logout = new javax.swing.JButton();
         btn_edit = new javax.swing.JButton();
@@ -71,6 +89,7 @@ public class AdminDashboard extends javax.swing.JFrame implements DashboardOpera
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(104, 164, 236));
@@ -150,13 +169,77 @@ public class AdminDashboard extends javax.swing.JFrame implements DashboardOpera
         });
         jPanel2.add(notification, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 20, 90, 80));
 
-        jLabel4.setText("jLabel4");
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+        jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/course.png"))); // NOI18N
+        jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 50, -1, -1));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/timetable.png"))); // NOI18N
+        jPanel4.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/notificationmanage.png"))); // NOI18N
+        jPanel4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 50, -1, -1));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/manage.png"))); // NOI18N
+        jPanel4.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, -1, -1));
+
+        btn_course.setBackground(new java.awt.Color(121, 162, 255));
+        btn_course.setForeground(new java.awt.Color(255, 255, 255));
+        btn_course.setText("COURSE");
+        btn_course.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel4MouseClicked(evt);
+                btn_courseMouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 380, 160, 60));
+        jPanel4.add(btn_course, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 190, 120, 30));
+
+        btn_timetable.setBackground(new java.awt.Color(121, 162, 255));
+        btn_timetable.setForeground(new java.awt.Color(255, 255, 255));
+        btn_timetable.setText("TIME TABLE");
+        btn_timetable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_timetableMouseClicked(evt);
+            }
+        });
+        jPanel4.add(btn_timetable, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 120, 30));
+
+        btn_notification.setBackground(new java.awt.Color(121, 162, 255));
+        btn_notification.setForeground(new java.awt.Color(255, 255, 255));
+        btn_notification.setText("NOTIFICATION");
+        btn_notification.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_notificationMouseClicked(evt);
+            }
+        });
+        jPanel4.add(btn_notification, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, 120, 30));
+
+        btn_user.setBackground(new java.awt.Color(121, 162, 255));
+        btn_user.setForeground(new java.awt.Color(255, 255, 255));
+        btn_user.setText("USER MANAGE");
+        btn_user.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_userMouseClicked(evt);
+            }
+        });
+        jPanel4.add(btn_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 190, 120, 30));
+
+        jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 800, 270));
+
+        jPanel5.setBackground(new java.awt.Color(190, 210, 232));
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 880, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
+        );
+
+        jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 630, 880, 20));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, 880, 650));
 
@@ -178,6 +261,11 @@ public class AdminDashboard extends javax.swing.JFrame implements DashboardOpera
         btn_edit.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_edit.setForeground(new java.awt.Color(255, 255, 255));
         btn_edit.setText("EDIT PROFILE");
+        btn_edit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_editMouseClicked(evt);
+            }
+        });
         jPanel3.add(btn_edit, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 310, 50));
 
         lable_username.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -247,11 +335,31 @@ public class AdminDashboard extends javax.swing.JFrame implements DashboardOpera
         }  
     }//GEN-LAST:event_notificationMouseClicked
 
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        UserManage newManageFrame = new UserManage(admin);
-        newManageFrame.setVisible(true);
+    private void btn_userMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_userMouseClicked
+        admin.manageUserProfiles(admin);
         this.dispose();
-    }//GEN-LAST:event_jLabel4MouseClicked
+    }//GEN-LAST:event_btn_userMouseClicked
+
+    private void btn_notificationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_notificationMouseClicked
+        admin.manageNotices(admin);
+        this.dispose();
+    }//GEN-LAST:event_btn_notificationMouseClicked
+
+    private void btn_courseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_courseMouseClicked
+        admin.manageCourses(admin);
+        this.dispose();
+    }//GEN-LAST:event_btn_courseMouseClicked
+
+    private void btn_timetableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_timetableMouseClicked
+        admin.manageTimetables(admin);
+        this.dispose();
+    }//GEN-LAST:event_btn_timetableMouseClicked
+
+    private void btn_editMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_editMouseClicked
+        AdminProfile ap = new AdminProfile(admin);
+        ap.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_editMouseClicked
 
     @Override
     public boolean contains(int x, int y) {
@@ -276,17 +384,26 @@ public class AdminDashboard extends javax.swing.JFrame implements DashboardOpera
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel avatarLabel;
+    private javax.swing.JButton btn_course;
     private javax.swing.JButton btn_edit;
     private javax.swing.JButton btn_logout;
+    private javax.swing.JButton btn_notification;
+    private javax.swing.JButton btn_timetable;
+    private javax.swing.JButton btn_user;
     private javax.swing.JLabel course;
     private javax.swing.JLabel courses_count;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JLabel lable_username;
     private javax.swing.JLabel lec;
     private javax.swing.JLabel lecturers_count;
