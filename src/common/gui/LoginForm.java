@@ -17,6 +17,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import student.Student;
+import student.StudentDashboard;
 
 
 public class LoginForm extends javax.swing.JFrame {
@@ -206,7 +208,10 @@ public class LoginForm extends javax.swing.JFrame {
                     //Lec
                     break;
                 case "student":
-                    //stu
+                    Student studentUser = new Student();
+                    StudentDashboard stuDashboard = new StudentDashboard(studentUser);
+                    stuDashboard.setVisible(true);
+                    LoginForm.this.dispose();
                     break;
                 case "technical officer":
                     //tec
