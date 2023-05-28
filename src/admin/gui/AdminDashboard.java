@@ -266,6 +266,11 @@ public class AdminDashboard extends javax.swing.JFrame implements DashboardOpera
                 btn_editMouseClicked(evt);
             }
         });
+        btn_edit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_editActionPerformed(evt);
+            }
+        });
         jPanel3.add(btn_edit, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 310, 50));
 
         lable_username.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -360,6 +365,10 @@ public class AdminDashboard extends javax.swing.JFrame implements DashboardOpera
         ap.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_editMouseClicked
+
+    private void btn_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_editActionPerformed
 
     @Override
     public boolean contains(int x, int y) {

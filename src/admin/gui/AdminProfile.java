@@ -45,6 +45,7 @@ public class AdminProfile extends javax.swing.JFrame{
         dbConnector = new MyDbConnector();
         connection = dbConnector.getMyConnection();
         email = loggedUser.getEmail();
+        setDataToField();
     }
 
     private AdminProfile() {
