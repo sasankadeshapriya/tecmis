@@ -67,6 +67,8 @@ public class UserManage extends javax.swing.JFrame implements TableOperations{
         jLabel27 = new javax.swing.JLabel();
         txt_psw1 = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
+        cmb_level = new javax.swing.JComboBox<>();
+        jLabel13 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         btn_insert = new javax.swing.JButton();
         txt_search = new javax.swing.JTextField();
@@ -211,6 +213,12 @@ public class UserManage extends javax.swing.JFrame implements TableOperations{
         jLabel12.setText("DOB");
         jPanel4.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 120, 70, 20));
 
+        cmb_level.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "L1S1", "LlS2", "L2S1", "L2S2", "L3S1", "L3S2", "L4S1", "L4S2" }));
+        jPanel4.add(cmb_level, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 180, 190, -1));
+
+        jLabel13.setText("Level");
+        jPanel4.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 180, 50, 20));
+
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 710, 220));
 
         jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -348,12 +356,14 @@ public class UserManage extends javax.swing.JFrame implements TableOperations{
     private javax.swing.JButton btn_update;
     private javax.swing.JComboBox<String> cmb_dep;
     private javax.swing.JComboBox<String> cmb_gender;
+    private javax.swing.JComboBox<String> cmb_level;
     private javax.swing.JComboBox<String> cmb_usertype;
     private javax.swing.JTextField id;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -404,8 +414,8 @@ public class UserManage extends javax.swing.JFrame implements TableOperations{
         
         try {
             connection = dbConnector.getMyConnection();
-            String sql = "INSERT INTO userprofiles (id,username,name,email,password,userType,gender,dob,contactNumber,address,depID) " +
-             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
+            String sql = "INSERT INTO userprofiles (id,username,name,email,password,userType,gender,dob,contactNumber,address,depID,LevelSem) " +
+             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)";
             PreparedStatement pstmt = connection.prepareStatement(sql);
             pstmt.setString(1, id.getText());
             pstmt.setString(2, txt_uname.getText());
@@ -420,7 +430,8 @@ public class UserManage extends javax.swing.JFrame implements TableOperations{
             pstmt.setString(9, txt_contact.getText());
             pstmt.setString(10, txt_add.getText());
             pstmt.setString(11, cmb_dep.getSelectedItem().toString());
-
+            pstmt.setString(11, cmb_level.getSelectedItem().toString());
+            
             pstmt.executeUpdate();
             JOptionPane.showMessageDialog(null, "Successfully Inserted");
             showtable();
@@ -449,7 +460,7 @@ public class UserManage extends javax.swing.JFrame implements TableOperations{
         
         try {
             connection = dbConnector.getMyConnection();
-            String sql = "UPDATE userprofiles SET name=?, email=?, password=?, address=?, contactNumber=?, depID=?, userType=? WHERE id =? ";
+            String sql = "UPDATE userprofiles SET name=?, email=?, password=?, address=?, contactNumber=?, depID=?, userType=?,LevelSem=? WHERE id =? ";
             PreparedStatement pstmt = connection.prepareStatement(sql);
             pstmt.setString(1, txt_name.getText());
             pstmt.setString(2, txt_email.getText());
@@ -458,8 +469,8 @@ public class UserManage extends javax.swing.JFrame implements TableOperations{
             pstmt.setString(5, txt_contact.getText());
             pstmt.setString(6, cmb_dep.getSelectedItem().toString());
             pstmt.setString(7, cmb_usertype.getSelectedItem().toString());
-            
-            pstmt.setString(8, id.getText());
+            pstmt.setString(8, cmb_level.getSelectedItem().toString());
+            pstmt.setString(9, id.getText());
             
             pstmt.executeUpdate();
             JOptionPane.showMessageDialog(null, "Succesfully Updated...");
@@ -482,7 +493,7 @@ public class UserManage extends javax.swing.JFrame implements TableOperations{
     public void showtable() {
         try {
                 connection = dbConnector.getMyConnection();
-                String sql = "SELECT id,username,name,email,password,userType,gender,dob,contactNumber,address,depID FROM userprofiles";
+                String sql = "SELECT id,username,name,email,password,userType,gender,dob,contactNumber,address,depID,LevelSem FROM userprofiles";
                 PreparedStatement stmt = connection.prepareStatement(sql);
                 ResultSet rs = stmt.executeQuery();
                 userTable.setModel(DbUtils.resultSetToTableModel(rs));
@@ -538,6 +549,7 @@ public class UserManage extends javax.swing.JFrame implements TableOperations{
         
         cmb_usertype.setSelectedIndex(0);
         cmb_gender.setSelectedIndex(0);
+        cmb_level.setSelectedIndex(0);
         
         t_dob.setDate(null);
         txt_contact.setText("");
@@ -590,7 +602,7 @@ public class UserManage extends javax.swing.JFrame implements TableOperations{
         txt_add.setText(userTable.getValueAt(row, 9).toString());
         
         cmb_dep.setSelectedItem(userTable.getValueAt(row, 10).toString());
-    
+        cmb_level.setSelectedItem(userTable.getValueAt(row, 11).toString());
     }
     
     
