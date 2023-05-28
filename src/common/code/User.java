@@ -3,6 +3,8 @@ package common.code;
 import admin.Admin;
 import admin.gui.AdminDashboard;
 import common.gui.LoginForm;
+import student.Student;
+import student.StudentDashboard;
 
 public class User implements UserOperations {
     
@@ -22,7 +24,8 @@ public class User implements UserOperations {
             AdminDashboard adminDash = new AdminDashboard((Admin) parameter);
             adminDash.setVisible(true);
         }else if("student".equals(userType)){
-        
+            StudentDashboard stu = new StudentDashboard((Student) parameter);
+            stu.setVisible(true);            
         }else if("tecofficer".equals(userType)){
         
         }else if("lecturer".equals(userType)){
