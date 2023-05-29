@@ -1,5 +1,7 @@
 package common.gui;
 
+import OfficerModule.Officer;
+import OfficerModule.TecDAshboard;
 import admin.Admin;
 import admin.gui.AdminDashboard;
 import common.code.Auth;
@@ -17,6 +19,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import lecturer.Lecturer;
+import lecturer.gui.LecturerDashboard;
 import student.Student;
 import student.StudentDashboard;
 
@@ -205,7 +209,10 @@ public class LoginForm extends javax.swing.JFrame {
                     LoginForm.this.dispose();
                     break;
                 case "lecturer":
-                    //Lec
+                    Lecturer lecturerUser = new Lecturer();
+                    LecturerDashboard lecDash = new LecturerDashboard(lecturerUser);
+                    lecDash.setVisible(true);
+                    LoginForm.this.dispose();
                     break;
                 case "student":
                     Student studentUser = new Student();
@@ -214,7 +221,10 @@ public class LoginForm extends javax.swing.JFrame {
                     LoginForm.this.dispose();
                     break;
                 case "technical officer":
-                    //tec
+                    Officer officerAcc = new Officer();
+                    TecDAshboard tecDash = new TecDAshboard(officerAcc);
+                    tecDash.setVisible(true);
+                    LoginForm.this.dispose();
                     break;                    
                 default:
                     System.out.println("Error..");
