@@ -1,8 +1,12 @@
 package common.code;
 
+import OfficerModule.Officer;
+import OfficerModule.TecDAshboard;
 import admin.Admin;
 import admin.gui.AdminDashboard;
 import common.gui.LoginForm;
+import lecturer.Lecturer;
+import lecturer.gui.LecturerDashboard;
 import student.Student;
 import student.StudentDashboard;
 
@@ -26,10 +30,12 @@ public class User implements UserOperations {
         }else if("student".equals(userType)){
             StudentDashboard stu = new StudentDashboard((Student) parameter);
             stu.setVisible(true);            
-        }else if("tecofficer".equals(userType)){
-        
+        }else if("technical officer".equals(userType)){
+            TecDAshboard newTec = new TecDAshboard((Officer) parameter);
+            newTec.setVisible(true);        
         }else if("lecturer".equals(userType)){
-        
+              LecturerDashboard lecDash = new LecturerDashboard((Lecturer) parameter);
+              lecDash.setVisible(true);        
         }else{
             System.out.println("Null value.... Errorr");
         }
