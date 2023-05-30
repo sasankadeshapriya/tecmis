@@ -20,7 +20,7 @@ import lecturer.MarksCalculations;
 
 /**
  *
- * @author kavin
+ * @author Kavindu_Dilhara
  */
 public class StudentMarks extends javax.swing.JFrame {
     
@@ -235,7 +235,7 @@ public class StudentMarks extends javax.swing.JFrame {
         lbl_stdID.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         lbl_stdID.setText("Student ID :");
         jPanel4.add(lbl_stdID, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 74, 25));
-        jPanel4.add(txt_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 130, -1));
+        jPanel4.add(txt_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 130, 20));
 
         btn_Calculate.setText("CALCULATE");
         btn_Calculate.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -315,6 +315,7 @@ public class StudentMarks extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_CalculateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_CalculateMouseClicked
@@ -406,7 +407,7 @@ public class StudentMarks extends javax.swing.JFrame {
                 double midtermScore = calculate.calculateMidtermScore(courseID, midterm);
                 double assessmentScore = calculate.calculateAssessmentScore(courseID, assessment1, assessment2);
                 double caMarks = calculate.calculateCAMarks(quizAvg, midtermScore, assessmentScore);
-                String eligibility = calculate.checkEligibility(courseID, caMarks);
+                String eligibility = calculate.checkEligibility(courseID,studentID, caMarks);
                 double calculatedFinalPrac = calculate.calculateFinalPracMarks(eligibility, courseID, finalPrac);
                 double calculatedFinalTheory = calculate.calculateFinalTheoryMarks(eligibility, courseID, finalTheory);
                 double finalMarks = calculate.calculateFinalMarks(eligibility, caMarks, calculatedFinalTheory, calculatedFinalPrac);

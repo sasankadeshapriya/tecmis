@@ -79,7 +79,7 @@ public class TimeTables extends javax.swing.JFrame {
     this.id = id; 
     
         try {
-            String sql="Select DepID from userprofiles WHERE Email='"+id+"'";
+            String sql="Select depID from userprofiles WHERE id='"+id+"'";
             PreparedStatement pstmt =  connection.prepareStatement(sql);
             ResultSet rs = pstmt.executeQuery();    
             if(rs.next()){
@@ -90,7 +90,7 @@ public class TimeTables extends javax.swing.JFrame {
         }
     
         try {
-            String sql="Select TTID,Title,TableContent from timetable WHERE DepID='"+depid+"'";
+            String sql="Select TTID,Title,TableContent from timetable WHERE depID='"+depid+"'";
             PreparedStatement pstmt =  connection.prepareStatement(sql);
             ResultSet rs = pstmt.executeQuery();
             

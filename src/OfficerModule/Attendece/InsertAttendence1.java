@@ -188,7 +188,7 @@ public class InsertAttendence1 extends javax.swing.JFrame {
         jLabel7.setText("Session");
         jPanel4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, -1, -1));
 
-        TypeofLecture.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Theory", "Practicle", "other" }));
+        TypeofLecture.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "theory", "practical", "other" }));
         jPanel4.add(TypeofLecture, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 150, 160, -1));
 
         InsertBtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -215,7 +215,7 @@ public class InsertAttendence1 extends javax.swing.JFrame {
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 30, 110, 20));
 
-        DepatmentCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "ICT", "BST", "ET", " " }));
+        DepatmentCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "ict", "bst", "et", " " }));
         jPanel4.add(DepatmentCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 30, 160, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N

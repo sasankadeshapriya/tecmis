@@ -232,7 +232,7 @@ public class LecturerDashboard extends javax.swing.JFrame implements DashboardOp
         btn_stdDet.setBackground(new java.awt.Color(11, 83, 148));
         btn_stdDet.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_stdDet.setForeground(new java.awt.Color(255, 255, 255));
-        btn_stdDet.setText("VIEW ");
+        btn_stdDet.setText("VIEW DETAILS");
         btn_stdDet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_stdDetActionPerformed(evt);

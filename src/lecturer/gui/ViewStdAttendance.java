@@ -52,11 +52,7 @@ public class ViewStdAttendance extends javax.swing.JFrame {
         showCourses();
     }
     
-    
-    
-    /**
-    * Fetches and displays the attendance records for a specific course, student, and session.
-    */
+
     public void showAttRecord() {
         try {
             dbConnector = new MyDbConnector();
@@ -67,6 +63,12 @@ public class ViewStdAttendance extends javax.swing.JFrame {
                 String courseID = (String) combo_cID.getSelectedItem();
                 String studentID = txt_stdID.getText();
                 String session = (String) com_type.getSelectedItem();
+
+                // Check if the course ID is ICT02 and session is practical
+                if (courseID.equals("ICT02") && session.equals("practical")) {
+                    JOptionPane.showMessageDialog(null, "ICT02 does not have a practical session.");
+                    return;
+                }
 
                 // Prepare the SQL query to fetch attendance records
                 String query = "SELECT AttID, Date, Session, Status FROM attendance WHERE CourseID = ? AND userID = ? AND Session = ?";
@@ -107,6 +109,19 @@ public class ViewStdAttendance extends javax.swing.JFrame {
                 int attendancePercentage = (totalCount > 0) ? (int) (((double) presentCount / totalCount) * 100) : 0;
                 prog_precentage.setValue(attendancePercentage);
                 lbl_precentage.setText("Attendance percentage: " + attendancePercentage + "%");
+
+                // Store eligibility in attendanceEligibility table
+                String eligibilityStatus = (attendancePercentage >= 80) ? "Eligible" : "Not Eligible";
+                String storeQuery = "INSERT INTO attendanceEligibility (userID, courseID, session, eligibility) VALUES (?, ?, ?, ?) " +
+                                    "ON DUPLICATE KEY UPDATE eligibility = ?";
+                PreparedStatement storeStmt = connection.prepareStatement(storeQuery);
+                storeStmt.setString(1, studentID);
+                storeStmt.setString(2, courseID);
+                storeStmt.setString(3, session);
+                storeStmt.setString(4, eligibilityStatus);
+                storeStmt.setString(5, eligibilityStatus);
+                storeStmt.executeUpdate();
+
             } catch (Exception e) {
                 System.out.println(e);
             } finally {
@@ -122,7 +137,9 @@ public class ViewStdAttendance extends javax.swing.JFrame {
         } catch (Exception e) {
             System.out.println("dbConnector not assigned: " + e.getMessage());
         }
-   }
+    }
+
+
 
      /**
      * Fetches and displays student records from the "student" table.
@@ -344,7 +361,7 @@ public class ViewStdAttendance extends javax.swing.JFrame {
         lbl_courseID.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lbl_courseID.setText("Course ID :");
 
-        combo_cID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "ICT01", "ICT02", "ICT03", "ICT04" }));
+        combo_cID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "ICT01", "ICT02", "ICT03", "ICT04", "ICT05", "TMS01" }));
         combo_cID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 combo_cIDActionPerformed(evt);
@@ -555,9 +572,6 @@ public class ViewStdAttendance extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel btn_Bck;
-    private javax.swing.JLabel btn_Bck1;
-    private javax.swing.JLabel btn_Bck2;
     private javax.swing.JLabel btn_Bck3;
     private javax.swing.JButton btn_showAtt;
     private javax.swing.JComboBox<String> com_type;

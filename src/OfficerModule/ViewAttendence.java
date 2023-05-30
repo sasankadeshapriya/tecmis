@@ -251,7 +251,7 @@ public class ViewAttendence extends javax.swing.JFrame {
         jPanel7.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 50, -1));
 
         dept.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        dept.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "ICT", "BST", "ET", "All" }));
+        dept.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "ict", "bst", "et", "All" }));
         jPanel7.add(dept, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 150, 20));
         jPanel7.add(Jdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 70, 150, -1));
 

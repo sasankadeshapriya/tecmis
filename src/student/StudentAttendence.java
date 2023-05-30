@@ -171,7 +171,7 @@ public class StudentAttendence extends javax.swing.JFrame {
         lbl_courseID.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lbl_courseID.setText("Course ID :");
 
-        combo_cID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "ICT01", "ICT02", "ICT03", "ICT04" }));
+        combo_cID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ICT01", "ICT02", "ICT03", "ICT04", "ICT05", "TMS01" }));
         combo_cID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 combo_cIDActionPerformed(evt);

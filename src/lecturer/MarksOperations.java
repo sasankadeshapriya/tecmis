@@ -19,7 +19,7 @@ public interface MarksOperations {
     
     public double calculateCAMarks(double quizAvg, double midtermScore, double assessmentScore);
     
-    public String checkEligibility(String courseID, double caMarks);
+    public String checkEligibility(String courseID,String studentID, double caMarks);
     
     public double calculateFinalPracMarks(String eligibility, String courseID, double finalPrac);
     

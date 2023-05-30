@@ -360,8 +360,8 @@
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="4">
                         <StringItem index="0" value="Select"/>
-                        <StringItem index="1" value="Theory"/>
-                        <StringItem index="2" value="Practicle"/>
+                        <StringItem index="1" value="theory"/>
+                        <StringItem index="2" value="practical"/>
                         <StringItem index="3" value="other"/>
                       </StringArray>
                     </Property>
@@ -430,9 +430,9 @@
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="5">
                         <StringItem index="0" value="Select"/>
-                        <StringItem index="1" value="ICT"/>
-                        <StringItem index="2" value="BST"/>
-                        <StringItem index="3" value="ET"/>
+                        <StringItem index="1" value="ict"/>
+                        <StringItem index="2" value="bst"/>
+                        <StringItem index="3" value="et"/>
                         <StringItem index="4" value=" "/>
                       </StringArray>
                     </Property>

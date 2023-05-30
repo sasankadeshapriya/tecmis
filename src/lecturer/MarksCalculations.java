@@ -5,6 +5,12 @@
  */
 package lecturer;
 
+import common.code.MyDbConnector;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.DecimalFormat;
 import java.util.Arrays;
 
@@ -13,6 +19,12 @@ import java.util.Arrays;
  * @author kavindu
  */
 public class MarksCalculations implements MarksOperations{
+    
+    private MyDbConnector dbConnector;
+    Connection connection = null;
+    PreparedStatement pstmt = null;
+    Statement stmt = null;
+    ResultSet rs = null;
 
     DecimalFormat df = new DecimalFormat("#.##");
 
@@ -157,25 +169,88 @@ public class MarksCalculations implements MarksOperations{
      * @param caMarks  The cumulative assessment marks.
      * @return The eligibility status ("Eligible" or "Not Eligible").
      */
-    public String checkEligibility(String courseID, double caMarks) {
+    public String checkEligibility(String courseID, String studentID, double caMarks) {
         String status;
 
-        if (courseID.equals("ICT02")) {
-            if (caMarks >= 20) {
-                status = "Eligible";
-            } else {
+        try {
+            dbConnector = new MyDbConnector();
+            System.out.println("Succeed...");
+            try {
+                connection = dbConnector.getMyConnection();
+
+                // Prepare the SQL query to fetch eligibility records
+                String query = "SELECT session, eligibility FROM attendanceEligibility WHERE courseID = ? AND userID = ?";
+                PreparedStatement pstmt = connection.prepareStatement(query);
+                pstmt.setString(1, courseID);
+                pstmt.setString(2, studentID);
+
+                // Execute the query and retrieve the result set
+                ResultSet rs = pstmt.executeQuery();
+
+                boolean hasTheory = false;
+                boolean hasPractical = false;
+                boolean eligible = true;
+
+                while (rs.next()) {
+                    String session = rs.getString("session");
+                    String eligibility = rs.getString("eligibility");
+
+                    if (session.equals("theory")) {
+                        hasTheory = true;
+                        if (eligibility.equals("Not Eligible")) {
+                            status = "Not Eligible";
+                            return status;
+                        }
+                    } else if (session.equals("practical")) {
+                        hasPractical = true;
+                        if (eligibility.equals("Not Eligible")) {
+                            status = "Not Eligible";
+                            return status;
+                        }
+                    }
+
+                    if (eligibility.equals("Not Eligible")) {
+                        eligible = false;
+                    }
+                }
+
+                if (hasTheory && hasPractical) {
+                    if (eligible && caMarks >= 20) {
+                        status = "Eligible";
+                    } else {
+                        status = "Not Eligible";
+                    }
+                } else {
+                    if (caMarks >= 15) {
+                        status = "Eligible";
+                    } else {
+                        status = "Not Eligible";
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println(e);
                 status = "Not Eligible";
+            } finally {
+                // Close the database connection in the finally block
+                try {
+                    if (connection != null) {
+                        connection.close();
+                    }
+                } catch (SQLException e) {
+                    System.out.println("Error in closing database connection: " + e.getMessage());
+                }
             }
-        } else {
-            if (caMarks >= 15) {
-                status = "Eligible";
-            } else {
-                status = "Not Eligible";
-            }
+        } catch (Exception e) {
+            System.out.println("dbConnector not assigned: " + e.getMessage());
+            status = "Not Eligible";
         }
 
         return status;
     }
+
+
+
+
 
 
     /**

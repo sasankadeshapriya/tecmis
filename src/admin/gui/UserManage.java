@@ -114,7 +114,7 @@ public class UserManage extends javax.swing.JFrame implements TableOperations{
         cmb_dep.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ict", "bst", "et", "multidisciplinary" }));
         jPanel4.add(cmb_dep, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 90, 190, -1));
 
-        cmb_usertype.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "student", "lecturer", "tecofficer", "admin" }));
+        cmb_usertype.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "student", "lecturer", "technical officer", "admin" }));
         jPanel4.add(cmb_usertype, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 30, 190, -1));
 
         cmb_gender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "male", "female" }));
@@ -213,7 +213,12 @@ public class UserManage extends javax.swing.JFrame implements TableOperations{
         jLabel12.setText("DOB");
         jPanel4.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 120, 70, 20));
 
-        cmb_level.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "L1S1", "LlS2", "L2S1", "L2S2", "L3S1", "L3S2", "L4S1", "L4S2" }));
+        cmb_level.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NULL", "L1S1", "LlS2", "L2S1", "L2S2", "L3S1", "L3S2", "L4S1", "L4S2" }));
+        cmb_level.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmb_levelActionPerformed(evt);
+            }
+        });
         jPanel4.add(cmb_level, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 180, 190, -1));
 
         jLabel13.setText("Level");
@@ -348,6 +353,10 @@ public class UserManage extends javax.swing.JFrame implements TableOperations{
         gettabledata();
     }//GEN-LAST:event_userTableMouseClicked
 
+    private void cmb_levelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_levelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmb_levelActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_clear;
@@ -430,7 +439,7 @@ public class UserManage extends javax.swing.JFrame implements TableOperations{
             pstmt.setString(9, txt_contact.getText());
             pstmt.setString(10, txt_add.getText());
             pstmt.setString(11, cmb_dep.getSelectedItem().toString());
-            pstmt.setString(11, cmb_level.getSelectedItem().toString());
+            pstmt.setString(12, cmb_level.getSelectedItem().toString());
             
             pstmt.executeUpdate();
             JOptionPane.showMessageDialog(null, "Successfully Inserted");
