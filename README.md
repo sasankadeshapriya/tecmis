@@ -1,5 +1,7 @@
 # Management Information System
 
+![Screenshot 2023-05-28 232616](https://github.com/sasankadeshapriya/lmsProject/assets/110438366/245d9bd3-5dcf-45b5-9a7f-1ce894ad9c8b)
+
 # Overview
 
 MIS is a comprehensive system developed in Java and MySQL designed to streamline the administrative and academic processes of a university. It is intended to manage user profiles, course details, student marks, attendance, notices, timetables, and medical records.
