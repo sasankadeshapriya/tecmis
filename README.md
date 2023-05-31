@@ -1,6 +1,6 @@
 # Management Information System
 
-![Screenshot 2023-05-28 232616](https://github.com/sasankadeshapriya/lmsProject/assets/110438366/245d9bd3-5dcf-45b5-9a7f-1ce894ad9c8b)
+[![MasterHead](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiwhOJb4VtzJdGPE_dlGP0D8lFHkXa7-xMpLmBSM6AWwkhyoEaTIjE3x1B6iJYMbEzevdUZI5GXFqUd9wW7iDVZyfjr4akBdZWif2piqzjr8aPYA1KNP9kVVPinC0sU3YbFg9mJMaeQatEGzi-rgp1UNZboJZh18jZSXH2qjaroWKAI1Tl8NfkIyPqP/s1600/241960644-245d9bd3-5dcf-45b5-9a7f-1ce894ad9c8b.png)](https://creditshub.tech)
 
 # Overview
 
