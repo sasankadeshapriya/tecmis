@@ -8,7 +8,7 @@ package OfficerModule.Attendece;
 // import necessary packages
 
 import OfficerModule.Officer;
-import admin.TableOperations;
+import OfficerModule.TableManagement;
 import com.toedter.calendar.JDateChooser;
 import common.code.Auth;
 import common.code.MyDbConnector;
@@ -33,15 +33,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author user
  */
-public class UpdateAttendence extends javax.swing.JFrame  {
+public class UpdateAttendence extends javax.swing.JFrame  implements TableManagement{
     PreparedStatement pst4,pst3 = null;
-    //ResultSet rs1;
-     Connection conn = null;
-    private String email;
+    
     private Officer officerAcc;
     private MyDbConnector dbConnector;
     private Connection connection;   
-    String student;
+ 
     UserProfile loggedUser = Auth.getLoggedUser();
     //code end import image
     
@@ -53,7 +51,7 @@ public class UpdateAttendence extends javax.swing.JFrame  {
     }
 
     private UpdateAttendence() {
-       // throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**
@@ -69,28 +67,36 @@ public class UpdateAttendence extends javax.swing.JFrame  {
         txt_copy2 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        stuID = new javax.swing.JTextField();
+        jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        ViewData = new javax.swing.JButton();
-        ReseData = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         updateTable = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        s_id = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        c_id = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        DateNew = new com.toedter.calendar.JDateChooser();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        stuID = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jLabel11 = new javax.swing.JLabel();
+        ViewData = new javax.swing.JButton();
+        ReseData = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        Deletebtn = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
         dep = new javax.swing.JComboBox<>();
         yearr = new javax.swing.JComboBox<>();
         Statuss = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        s_id = new javax.swing.JTextField();
+        DateNew = new com.toedter.calendar.JDateChooser();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        c_id = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
+        sessions = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1260, 820));
@@ -128,59 +134,45 @@ public class UpdateAttendence extends javax.swing.JFrame  {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1250, 150));
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
         jPanel4.setMinimumSize(new java.awt.Dimension(1070, 420));
         jPanel4.setPreferredSize(new java.awt.Dimension(1070, 420));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel4.add(stuID, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, 150, -1));
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("View Attendence"));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Student ID");
-        jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 50, 110, -1));
-
-        ViewData.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        ViewData.setText("VIEW");
-        ViewData.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ViewDataActionPerformed(evt);
-            }
-        });
-        jPanel4.add(ViewData, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 50, 120, 30));
-
-        ReseData.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        ReseData.setText("RESET");
-        ReseData.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ReseDataActionPerformed(evt);
-            }
-        });
-        jPanel4.add(ReseData, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 50, 110, 30));
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 80, -1));
 
         updateTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Student ID", "Cource ID", "Depatment", "Date", "Level", "Status"
+                "Student ID", "Cource ID", "Date", "Session", "Depatment", "Level", "Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+        });
+        updateTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                updateTableMouseClicked(evt);
             }
         });
         jScrollPane2.setViewportView(updateTable);
@@ -191,65 +183,69 @@ public class UpdateAttendence extends javax.swing.JFrame  {
             updateTable.getColumnModel().getColumn(3).setPreferredWidth(250);
             updateTable.getColumnModel().getColumn(4).setPreferredWidth(250);
             updateTable.getColumnModel().getColumn(5).setPreferredWidth(250);
+            updateTable.getColumnModel().getColumn(6).setPreferredWidth(250);
         }
 
-        jPanel4.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 660, 50));
+        jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 890, 100));
+        jPanel3.add(stuID, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 30, 180, 20));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setText("Student ID");
-        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, -1, -1));
+        jLabel9.setText("Date");
+        jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 60, -1));
+        jPanel3.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 180, -1));
 
-        s_id.addActionListener(new java.awt.event.ActionListener() {
+        jLabel11.setText("CourseID");
+        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, -1));
+
+        ViewData.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        ViewData.setText("VIEW");
+        ViewData.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                s_idActionPerformed(evt);
+                ViewDataActionPerformed(evt);
             }
         });
-        jPanel4.add(s_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 230, 150, -1));
+        jPanel3.add(ViewData, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 30, 140, 70));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel3.setText("Course ID");
-        jPanel4.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 280, -1, -1));
-        jPanel4.add(c_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 270, 150, -1));
+        ReseData.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        ReseData.setText("RESET");
+        ReseData.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReseDataActionPerformed(evt);
+            }
+        });
+        jPanel3.add(ReseData, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 30, 140, 30));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setText("Date");
-        jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 320, 60, -1));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "ICT01", "ICT02", "ICT03", "ICT04", "ICT05", "TMS01", " " }));
+        jPanel3.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 180, -1));
 
-        DateNew.setDateFormatString("yyyy-MM-dd");
-        jPanel4.add(DateNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 310, 150, -1));
+        Deletebtn.setText("Delete");
+        Deletebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeletebtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(Deletebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 70, 140, 30));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel5.setText("Department");
-        jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 230, -1, -1));
+        jPanel4.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 920, 240));
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel6.setText("Level");
-        jPanel4.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 260, 80, -1));
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel7.setText("Status");
-        jPanel4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 300, -1, -1));
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Update Attendence"));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         dep.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        dep.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "ICT", "BST", "ET" }));
-        jPanel4.add(dep, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 230, 120, -1));
+        dep.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "ict", "bst", "et", " " }));
+        jPanel5.add(dep, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 30, 180, -1));
 
         yearr.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        yearr.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "LEVEL 1", "LEVEL 2", "LEVEL 3", "LEVEL 4" }));
-        jPanel4.add(yearr, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 270, 120, -1));
+        yearr.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "L1S1", "LlS2", "L2S1", "L2S2", "L3S1", "L3S2", "L4S1", "L4S2" }));
+        yearr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                yearrActionPerformed(evt);
+            }
+        });
+        jPanel5.add(yearr, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 70, 180, -1));
 
         Statuss.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Statuss.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Absent", "Present" }));
-        jPanel4.add(Statuss, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 310, 120, -1));
-
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton1.setText("Update");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 360, 120, 30));
+        jPanel5.add(Statuss, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 110, 180, -1));
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButton2.setText("Reset");
@@ -258,61 +254,72 @@ public class UpdateAttendence extends javax.swing.JFrame  {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 360, 120, 30));
+        jPanel5.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 160, 140, 30));
 
-        jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 1250, 450));
+        s_id.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                s_idActionPerformed(evt);
+            }
+        });
+        jPanel5.add(s_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 30, 180, 20));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 1260, 490));
+        DateNew.setDateFormatString("yyyy-MM-dd");
+        jPanel5.add(DateNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 180, -1));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setText("Date");
+        jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 60, -1));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setText("Course ID");
+        jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setText("Student ID");
+        jPanel5.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel5.setText("Department");
+        jPanel5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 30, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel6.setText("Level");
+        jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 70, 60, -1));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel7.setText("Status");
+        jPanel5.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 120, -1, -1));
+
+        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jButton1.setText("Update");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 160, 140, 30));
+
+        c_id.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "ICT01", "ICT02", "ICT03", "ICT04", "ICT05", "TMS01", " ", " " }));
+        jPanel5.add(c_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 180, -1));
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel8.setText("Session");
+        jPanel5.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, -1));
+
+        sessions.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "theory", "practical", "other" }));
+        jPanel5.add(sessions, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 180, -1));
+
+        jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 920, 210));
+
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 1250, 480));
 
         setSize(new java.awt.Dimension(1266, 635));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-public void updatedata(String student){
-        
-        try{
-            Statement st =connection.createStatement();
-            String sql = "select * from attendance WHERE userID='"+student+"'";
-            ResultSet rs= st.executeQuery(sql);
-            
-                      
-            while(rs.next()){
-                String Student_id = rs.getString("userID");
-                String Course_id = rs.getString("CourseID");
-                String department= rs.getString("Department");
-                String date=rs.getString("Date");
-                String years=rs.getString("Year");
-                String status= rs.getString("Status");
-                
-                String tbData[]={Student_id,Course_id,department,date,years,status};
-               
-                DefaultTableModel model = (DefaultTableModel) updateTable.getModel();
-                int rowCount = model.getRowCount();
-                for (int i = rowCount - 1; i >= 0; i--) {
-                boolean isEmptyRow = true;
-                for (int j = 0; j < model.getColumnCount(); j++) {
-                Object value = model.getValueAt(i, j);
-                if (value != null && !value.toString().isEmpty()) {
-                isEmptyRow = false;
-                break;
-                }
-             }
-                 if (isEmptyRow) {
-                 model.removeRow(i);
-            }
-        }
-                model.addRow(tbData);
-                
-                s_id.setText(Student_id);
-                c_id.setText(Course_id);
-            }
-            
-           
-            }catch(SQLException e ){
-            JOptionPane.showMessageDialog(null, e);
-        }
-}  
+
     
-    public void clear(){
+    @Override
+    public void Reset(){
         stuID.setText(""); 
         s_id.setText("");
         DefaultTableModel model = (DefaultTableModel) updateTable.getModel();
@@ -320,75 +327,154 @@ public void updatedata(String student){
         dep.setSelectedItem("Select");
         yearr.setSelectedItem("Select");
         Statuss.setSelectedItem("Select");
-        c_id.setText("");
+        c_id.setSelectedItem("Select");
         DateNew.setDate(null);
+        jDateChooser1.setDate(null);
+        jComboBox1.setSelectedItem("Select");
 }
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    String dateString1;
+    public void gettabledata() {
+    
+    int row = updateTable.getSelectedRow();
+    
+    if (row >= 0) {
+        s_id.setText(updateTable.getValueAt(row, 0).toString());
+        c_id.setSelectedItem(updateTable.getValueAt(row, 1).toString());
+        dep.setSelectedItem(updateTable.getValueAt(row, 4).toString());
+        sessions.setSelectedItem(updateTable.getValueAt(row, 3).toString());
+        yearr.setSelectedItem(updateTable.getValueAt(row, 5).toString());
+        Statuss.setSelectedItem(updateTable.getValueAt(row, 6).toString());
+
+         dateString1 = updateTable.getValueAt(row, 2).toString();
         
-    }//GEN-LAST:event_jButton3ActionPerformed
+        if (dateString1 != null && !dateString1.isEmpty()) {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            try {
+                java.util.Date date = dateFormat.parse(dateString1);
+                DateNew.setDate(date);
+                jDateChooser1.setDate(date);
+                
+            } catch (ParseException e) {
+                e.printStackTrace(); // Handle the parsing exception appropriately
+            }
+        } else {
+            // Handle case when the date value is empty or null
+        }
+    } else {
+        // Handle case when no row is selected
+    }  
+}
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        clear();
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String S_id = s_id.getText();
-        String dept=(String)dep.getSelectedItem();
-        String C_id = c_id.getText();
+    public void ShowTable(String student){
+         AttendanceDAO attendanceDAO = new AttendanceDAO();
+         attendanceDAO.updateTable(updateTable,"select * from attendance WHERE userID='"+student+"'");
+}
+    public void ShowTable(String student,String CourseID,String dateString){
+        AttendanceDAO attendanceDAO = new AttendanceDAO();
+        attendanceDAO.updateTable(updateTable,"select * from attendance WHERE userID='"+student+"'AND Date='"+dateString+"' AND CourseID='"+CourseID+"' ");
+    }
+    
+    @Override
+    public void Update() {
+       String student = stuID.getText();
+        String studentId = s_id.getText();
+        String department=(String)dep.getSelectedItem();
+        String courseId = (String) c_id.getSelectedItem();
         String status=(String)Statuss.getSelectedItem();
         String year =(String) yearr.getSelectedItem();
-
+        String session=(String) sessions.getSelectedItem();
         // assume user has selected a date from the date chooser
+        //new date getting
         java.util.Date selectedDate = DateNew.getDate();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String dateString = dateFormat.format(selectedDate);
-
-        System.out.println("SIDDD   "+S_id);
-        System.out.println("dep "+dept);
-        System.out.println("c_id "+C_id);
-        System.out.println("status "+status);
-        System.out.println("year "+year);
-        System.out.println("dateStrinng "+dateString);
         
-        try {
-            String sql2="UPDATE attendance SET CourseID='"+C_id+"',Department='"+dept+"',Date='"+dateString+"',Status='"+status+"',Year='"+year+"' WHERE userID='"+S_id+"'";
-            pst3 =connection.prepareStatement(sql2);
-            pst3.execute();
-            DefaultTableModel model = (DefaultTableModel) updateTable.getModel();
-            model.setRowCount(0);
-            updatedata(student);
-
-        } catch (SQLException ex) {
-            Logger.getLogger(UpdateAttendence.class.getName()).log(Level.SEVERE, null, ex);
+        Attendance attendance = new Attendance(studentId, department, courseId, status, year, session, dateString);
+        //Attendance attendance = new Attendance(studentId, department, courseId, status, year, session, dateString, dateString1);
+        AttendanceDAO attendanceDAO = new AttendanceDAO();
+        try{
+            attendanceDAO.insertAttendance(attendance,"UPDATE attendance SET CourseID=?, Department=?, Date=?, Status=?, Year=? , Session=? WHERE userID=? And Date='"+dateString1+"'");
+        }catch(Exception e){
+            System.out.println("error "+e.getMessage());
         }
+        try{
+            attendanceDAO.updateTable(updateTable,"select * from attendance WHERE userID='"+student+"' AND Date='"+dateString+"' AND CourseID='"+courseId+"'");
+        }catch(Exception e){
+        }
+    }
+    
+    private void jLabel16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel16MouseClicked
+        officerAcc.back(officerAcc);
+        this.dispose();
+    }//GEN-LAST:event_jLabel16MouseClicked
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Update();
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void s_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_s_idActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_s_idActionPerformed
 
-    private void ReseDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReseDataActionPerformed
-        clear();
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Reset();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void ReseDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReseDataActionPerformed
+        Reset();
     }//GEN-LAST:event_ReseDataActionPerformed
 
     private void ViewDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewDataActionPerformed
-        System.out.println("bbbhbbbbbbbbbbbb");
-        student = stuID.getText();
-        System.out.println("student "+student);
-        try{
-            updatedata(student);
-        }catch(Exception e){
-            System.out.println("not go update statement");
-        }
+        String student = stuID.getText();
+        String courseId = (String) jComboBox1.getSelectedItem();
+        java.util.Date selectedDate = jDateChooser1.getDate();
+
+        if (courseId != null && !courseId.equals("Select") && selectedDate != null) {
+          SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+          String dateString = dateFormat.format(selectedDate);
+          ShowTable(student, courseId, dateString);
+        } else {
+          ShowTable(student);
+}
+
         
     }//GEN-LAST:event_ViewDataActionPerformed
 
-    private void jLabel16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel16MouseClicked
-        officerAcc.back(officerAcc);
-        this.dispose();
-    }//GEN-LAST:event_jLabel16MouseClicked
+    private void yearrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearrActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_yearrActionPerformed
+
+    private void updateTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateTableMouseClicked
+        gettabledata();
+    }//GEN-LAST:event_updateTableMouseClicked
+
+    private void DeletebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeletebtnActionPerformed
+   
+    String Sid = stuID.getText();
+    //String dateString1 = dateFormat.format(selectedDate); // Assuming you have the date stored in the "dateString1" variable
+
+    String query = "DELETE FROM attendance WHERE userID=? AND Date=?";
+    
+    try (PreparedStatement pst = connection.prepareStatement(query)) {
+        pst.setString(1, Sid);
+        pst.setString(2, dateString1);
+        
+        int rowsDeleted = pst.executeUpdate();
+        
+        if (rowsDeleted > 0) {
+            // Deletion successful
+            JOptionPane.showMessageDialog(null, "Attendance record deleted successfully.");
+        } else {
+            // No matching record found
+            JOptionPane.showMessageDialog(null, "No attendance record found for the specified user and date.");
+        }
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+    ShowTable(Sid);
+
+    }//GEN-LAST:event_DeletebtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -442,15 +528,19 @@ public void updatedata(String student){
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser DateNew;
+    private javax.swing.JButton Deletebtn;
     private javax.swing.JButton ReseData;
     private javax.swing.JComboBox<String> Statuss;
     private javax.swing.JButton ViewData;
-    private javax.swing.JTextField c_id;
+    private javax.swing.JComboBox<String> c_id;
     private javax.swing.JComboBox<String> dep;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -458,16 +548,46 @@ public void updatedata(String student){
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField s_id;
+    private javax.swing.JComboBox<String> sessions;
     private javax.swing.JTextField stuID;
     private javax.swing.JLabel txt_copy2;
     private javax.swing.JTable updateTable;
     private javax.swing.JComboBox<String> yearr;
     // End of variables declaration//GEN-END:variables
+
+
+    @Override
+    public void Insert() {
+    }
+
+    @Override
+    public void SetValue() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void Referance() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    
+
+    @Override
+    public void ShowTable() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    private String String(JDateChooser Datenew) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
 } 
 

@@ -19,6 +19,7 @@ public class Attendance {
     private String year;
     private String Session;
     private String dateString;
+    private String dateString1;
     
     // Constructor
     public Attendance(String studentId, String department, String courseId, String status, String year, String Session,String dateString) {
@@ -29,6 +30,22 @@ public class Attendance {
         this.year = year;
         this.Session = Session;
         this.dateString = dateString;
+        
+    }
+//     public Attendance(String studentId, String department, String courseId, String status, String year, String Session,String dateString,String dateString1) {
+//        this.studentId = studentId;
+//        this.department = department;
+//        this.courseId = courseId;
+//        this.status = status;
+//        this.year = year;
+//        this.Session = Session;
+//        this.dateString = dateString;
+//        this.dateString1=dateString1;
+//       
+//    }
+
+    Attendance() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     // Getters and Setters
@@ -84,13 +101,23 @@ public class Attendance {
         return dateString;
     }
     
+    
     public void setDate(String dateString) {
         this.dateString = dateString;
     }
-
-    public String getSession() {
-       throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    
+    public String getDate1() {
+        return dateString1;
     }
+    
+    
+    public void setDate1(String dateString1) {
+        this.dateString = dateString;
+    }
+    public String getSession() {
+        return Session;
+    }
+    
 }
 
     
