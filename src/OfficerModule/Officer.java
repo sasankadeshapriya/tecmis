@@ -12,6 +12,4 @@ import common.code.User;
  */
 public class Officer extends User{
     
-    
-    
 }

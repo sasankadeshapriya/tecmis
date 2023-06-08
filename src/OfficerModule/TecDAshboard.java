@@ -2,6 +2,10 @@ package OfficerModule;
 
 
 
+import OfficerModule.Attendece.AttendenceSheet;
+import OfficerModule.Attendece.ViewAttendence;
+import OfficerModule.Medicle.ViewMedicles;
+import OfficerModule.Medicle.InsertMedicles;
 import OfficerModule.Attendece.InsertAttendence1;
 import OfficerModule.Attendece.UpdateAttendence;
 import common.code.Auth;
@@ -78,23 +82,6 @@ public class TecDAshboard extends javax.swing.JFrame implements DashboardOperati
 
         jPanel1 = new javax.swing.JPanel();
         avatarLabel = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
-        btn_uremove3 = new javax.swing.JButton();
-        btn_ucreate4 = new javax.swing.JButton();
-        btn_uupdate3 = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        btn_uremove = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
-        btn_uremove2 = new javax.swing.JButton();
-        btn_ucreate3 = new javax.swing.JButton();
-        btn_uupdate2 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        btn_ucreate6 = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        btn_ucreate2 = new javax.swing.JButton();
-        jLabel10 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         btn_logout = new javax.swing.JButton();
         btn_edit = new javax.swing.JButton();
@@ -102,7 +89,26 @@ public class TecDAshboard extends javax.swing.JFrame implements DashboardOperati
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        btn_ucreate6 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
         notification = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        btn_ucreate2 = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        btn_uremove = new javax.swing.JButton();
+        jPanel7 = new javax.swing.JPanel();
+        btn_ucreate4 = new javax.swing.JButton();
+        btn_uupdate3 = new javax.swing.JButton();
+        btn_uremove3 = new javax.swing.JButton();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -129,145 +135,6 @@ public class TecDAshboard extends javax.swing.JFrame implements DashboardOperati
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 330));
-
-        jPanel5.setBackground(new java.awt.Color(104, 164, 236));
-        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btn_uremove3.setBackground(new java.awt.Color(11, 83, 148));
-        btn_uremove3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btn_uremove3.setForeground(new java.awt.Color(255, 255, 255));
-        btn_uremove3.setText("VIEW");
-        btn_uremove3.setBorder(null);
-        btn_uremove3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_uremove3ActionPerformed(evt);
-            }
-        });
-        jPanel5.add(btn_uremove3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 20, 160, 40));
-
-        btn_ucreate4.setBackground(new java.awt.Color(11, 83, 148));
-        btn_ucreate4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btn_ucreate4.setForeground(new java.awt.Color(255, 255, 255));
-        btn_ucreate4.setText("INSERT");
-        btn_ucreate4.setBorder(null);
-        btn_ucreate4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_ucreate4ActionPerformed(evt);
-            }
-        });
-        jPanel5.add(btn_ucreate4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 160, 40));
-
-        btn_uupdate3.setBackground(new java.awt.Color(11, 83, 148));
-        btn_uupdate3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btn_uupdate3.setForeground(new java.awt.Color(255, 255, 255));
-        btn_uupdate3.setText("UPDATE");
-        btn_uupdate3.setBorder(null);
-        btn_uupdate3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_uupdate3ActionPerformed(evt);
-            }
-        });
-        jPanel5.add(btn_uupdate3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 20, 160, 40));
-
-        jLabel7.setFont(new java.awt.Font("MS UI Gothic", 1, 24)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("ATTENDENCE");
-        jPanel5.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 170, 30));
-
-        getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 100, 790, 80));
-
-        jPanel2.setBackground(new java.awt.Color(104, 164, 236));
-        jPanel2.setPreferredSize(new java.awt.Dimension(1000, 800));
-        jPanel2.setRequestFocusEnabled(false);
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btn_uremove.setBackground(new java.awt.Color(11, 83, 148));
-        btn_uremove.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btn_uremove.setForeground(new java.awt.Color(255, 255, 255));
-        btn_uremove.setText("Manage");
-        btn_uremove.setBorder(null);
-        btn_uremove.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_uremoveActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btn_uremove, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 20, 240, 40));
-
-        jPanel4.setBackground(new java.awt.Color(153, 153, 255));
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btn_uremove2.setBackground(new java.awt.Color(11, 83, 148));
-        btn_uremove2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btn_uremove2.setForeground(new java.awt.Color(255, 255, 255));
-        btn_uremove2.setText("REMOVE");
-        btn_uremove2.setBorder(null);
-        btn_uremove2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_uremove2ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(btn_uremove2, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 20, 160, 40));
-
-        btn_ucreate3.setBackground(new java.awt.Color(11, 83, 148));
-        btn_ucreate3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btn_ucreate3.setForeground(new java.awt.Color(255, 255, 255));
-        btn_ucreate3.setText("CREATE");
-        btn_ucreate3.setBorder(null);
-        jPanel4.add(btn_ucreate3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 160, 40));
-
-        btn_uupdate2.setBackground(new java.awt.Color(11, 83, 148));
-        btn_uupdate2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btn_uupdate2.setForeground(new java.awt.Color(255, 255, 255));
-        btn_uupdate2.setText("UPDATE");
-        btn_uupdate2.setBorder(null);
-        jPanel4.add(btn_uupdate2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 20, 160, 40));
-
-        jLabel4.setText("jLabel2");
-        jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-210, 469, 460, 320));
-
-        jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 810, 140));
-
-        jLabel8.setFont(new java.awt.Font("MS UI Gothic", 1, 24)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("MEDICLE DETAILS");
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 220, 30));
-
-        btn_ucreate6.setBackground(new java.awt.Color(11, 83, 148));
-        btn_ucreate6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btn_ucreate6.setForeground(new java.awt.Color(255, 255, 255));
-        btn_ucreate6.setText("INSERT");
-        btn_ucreate6.setBorder(null);
-        btn_ucreate6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_ucreate6ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btn_ucreate6, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 240, 40));
-
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 200, 790, 80));
-
-        jPanel3.setBackground(new java.awt.Color(104, 164, 236));
-        jPanel3.setPreferredSize(new java.awt.Dimension(770, 800));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btn_ucreate2.setBackground(new java.awt.Color(11, 83, 148));
-        btn_ucreate2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btn_ucreate2.setForeground(new java.awt.Color(255, 255, 255));
-        btn_ucreate2.setText("VIEW");
-        btn_ucreate2.setBorder(null);
-        btn_ucreate2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_ucreate2ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btn_ucreate2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 500, 40));
-
-        jLabel10.setFont(new java.awt.Font("MS UI Gothic", 1, 24)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("TIME TABLE");
-        jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 170, 30));
-
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 300, 790, 80));
 
         jPanel6.setBackground(new java.awt.Color(104, 164, 236));
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -319,13 +186,142 @@ public class TecDAshboard extends javax.swing.JFrame implements DashboardOperati
 
         getContentPane().add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, 370, 320));
 
+        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder("Medicles Manage"));
+        jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btn_ucreate6.setBackground(new java.awt.Color(121, 162, 255));
+        btn_ucreate6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_ucreate6.setForeground(new java.awt.Color(255, 255, 255));
+        btn_ucreate6.setText("INSERT");
+        btn_ucreate6.setBorder(null);
+        btn_ucreate6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ucreate6ActionPerformed(evt);
+            }
+        });
+        jPanel8.add(btn_ucreate6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 120, 30));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/OfficerModule/Resourses/m2.png"))); // NOI18N
+        jPanel8.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, -1, 130));
+
+        getContentPane().add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, 280, 190));
+
         notification.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/notification.png"))); // NOI18N
         notification.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 notificationMouseClicked(evt);
             }
         });
-        getContentPane().add(notification, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 10, 90, 80));
+        getContentPane().add(notification, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 30, 100, 80));
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Time Table Manage"));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btn_ucreate2.setBackground(new java.awt.Color(121, 162, 255));
+        btn_ucreate2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_ucreate2.setForeground(new java.awt.Color(255, 255, 255));
+        btn_ucreate2.setText("VIEW");
+        btn_ucreate2.setBorder(null);
+        btn_ucreate2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ucreate2ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btn_ucreate2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 120, 30));
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/OfficerModule/Resourses/T1.png"))); // NOI18N
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, -1, 120));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 220, 280, 190));
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("PDF Generator"));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton1.setBackground(new java.awt.Color(121, 162, 255));
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Generate");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 120, 30));
+
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/OfficerModule/Resourses/P1.png"))); // NOI18N
+        jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, 150, 130));
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 220, 270, 190));
+
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Manage Medicles"));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/OfficerModule/Resourses/m1.png"))); // NOI18N
+        jPanel4.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, -1, 130));
+
+        btn_uremove.setBackground(new java.awt.Color(121, 162, 255));
+        btn_uremove.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_uremove.setForeground(new java.awt.Color(255, 255, 255));
+        btn_uremove.setText("Manage");
+        btn_uremove.setBorder(null);
+        btn_uremove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_uremoveActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btn_uremove, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 120, 30));
+
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 20, 270, 190));
+
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Attendence Manage"));
+        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btn_ucreate4.setBackground(new java.awt.Color(121, 162, 255));
+        btn_ucreate4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_ucreate4.setForeground(new java.awt.Color(255, 255, 255));
+        btn_ucreate4.setText("INSERT");
+        btn_ucreate4.setBorder(null);
+        btn_ucreate4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ucreate4ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(btn_ucreate4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 120, 30));
+
+        btn_uupdate3.setBackground(new java.awt.Color(121, 162, 255));
+        btn_uupdate3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_uupdate3.setForeground(new java.awt.Color(255, 255, 255));
+        btn_uupdate3.setText("UPDATE");
+        btn_uupdate3.setBorder(null);
+        btn_uupdate3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_uupdate3ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(btn_uupdate3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 170, 120, 30));
+
+        btn_uremove3.setBackground(new java.awt.Color(121, 162, 255));
+        btn_uremove3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_uremove3.setForeground(new java.awt.Color(255, 255, 255));
+        btn_uremove3.setText("VIEW");
+        btn_uremove3.setBorder(null);
+        btn_uremove3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_uremove3ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(btn_uremove3, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 170, 120, 30));
+
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/OfficerModule/Resourses/A2.png"))); // NOI18N
+        jPanel7.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, 160, 150));
+
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/OfficerModule/Resourses/A3.png"))); // NOI18N
+        jPanel7.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 180, -1));
+
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/OfficerModule/Resourses/A1.png"))); // NOI18N
+        jPanel7.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 10, -1, -1));
+
+        getContentPane().add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 420, 730, 210));
 
         pack();
         setLocationRelativeTo(null);
@@ -354,10 +350,6 @@ public class TecDAshboard extends javax.swing.JFrame implements DashboardOperati
         n.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_uremoveActionPerformed
-
-    private void btn_uremove2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_uremove2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_uremove2ActionPerformed
 
     private void btn_ucreate6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ucreate6ActionPerformed
         InsertMedicles m =new InsertMedicles(officerAcc);
@@ -391,6 +383,13 @@ public class TecDAshboard extends javax.swing.JFrame implements DashboardOperati
         this.dispose();
     }//GEN-LAST:event_btn_editActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        System.out.println("test attendencesheet..");
+        AttendenceSheet atten =new AttendenceSheet(officerAcc);
+        atten.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
@@ -403,27 +402,29 @@ public class TecDAshboard extends javax.swing.JFrame implements DashboardOperati
     private javax.swing.JButton btn_edit;
     private javax.swing.JButton btn_logout;
     private javax.swing.JButton btn_ucreate2;
-    private javax.swing.JButton btn_ucreate3;
     private javax.swing.JButton btn_ucreate4;
     private javax.swing.JButton btn_ucreate6;
     private javax.swing.JButton btn_uremove;
-    private javax.swing.JButton btn_uremove2;
     private javax.swing.JButton btn_uremove3;
-    private javax.swing.JButton btn_uupdate2;
     private javax.swing.JButton btn_uupdate3;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JLabel lable_username;
     private javax.swing.JLabel notification;
     // End of variables declaration//GEN-END:variables

@@ -18,18 +18,20 @@ import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-
+import OfficerModule.Attendece.Attendance;
 /**
  *
  * @author user
  */
-public class InsertAttendence1 extends javax.swing.JFrame {
+public class InsertAttendence1 extends javax.swing.JFrame implements TableManagement{
     
     
     private Officer officerAcc;
     private JTable updateTable;
     private MyDbConnector dbConnector;
     private Connection connection;
+    private JTable myTable;
+
     
     public InsertAttendence1(Officer officerAcc) {
         initComponents();
@@ -37,6 +39,45 @@ public class InsertAttendence1 extends javax.swing.JFrame {
         connection = dbConnector.getMyConnection();
         this.officerAcc = officerAcc;
         
+    }
+    @Override
+    public void Reset(){
+        Sid.setText("");
+        DepatmentCombo.setSelectedItem("Select");
+        yearCombo.setSelectedItem("Select");
+        Status.setSelectedItem("Select");
+        TypeofLecture.setSelectedItem("Select");
+        CourseId.setSelectedItem("Select");
+        AttendDate.setDate(null);
+        //ProgressBar.setVisible(false);
+        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+        model.setRowCount(0);
+    }
+    
+    @Override
+    public void Insert() {
+        
+        String studentId = Sid.getText();
+        String department = (String) DepatmentCombo.getSelectedItem();
+        String courseId = (String) CourseId.getSelectedItem();
+        String status = (String) Status.getSelectedItem();
+        String year = (String) yearCombo.getSelectedItem();
+        String session = (String) TypeofLecture.getSelectedItem();
+      
+        java.util.Date selectedDate = AttendDate.getDate();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString = dateFormat.format(selectedDate);
+        
+
+        Attendance attendance = new Attendance(studentId, department, courseId, status, year, session, dateString);
+        AttendanceDAO attendanceDAO = new AttendanceDAO();
+        //attendanceDAO.insertAttendance(attendance,"INSERT INTO attendance (userID, Department, CourseID, Status, Year, Session, Date) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        
+        attendanceDAO.insertAttendance(attendance,"INSERT INTO attendance (CourseID,Department,Date, Status, Year, Session,userID) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        //System.out.println("Get value into variable");
+        
+        attendanceDAO.updateTable(jTable2,"SELECT * FROM attendance ORDER BY userID,Date");
+        //System.out.println("call update funtion ");
     }
 
     private InsertAttendence1() {
@@ -67,7 +108,6 @@ public class InsertAttendence1 extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         CourseId = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
-        AttendDate = new com.toedter.calendar.JDateChooser();
         jLabel7 = new javax.swing.JLabel();
         TypeofLecture = new javax.swing.JComboBox<>();
         InsertBtn = new javax.swing.JButton();
@@ -78,6 +118,7 @@ public class InsertAttendence1 extends javax.swing.JFrame {
         yearCombo = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         Status = new javax.swing.JComboBox<>();
+        AttendDate = new com.toedter.calendar.JDateChooser();
         result = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -153,7 +194,7 @@ public class InsertAttendence1 extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jTable2);
 
-        jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, 990, 90));
+        jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, 990, 170));
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Insert Attendence"));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -180,9 +221,6 @@ public class InsertAttendence1 extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("Date");
         jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, -1, -1));
-
-        AttendDate.setDateFormatString("yyyy-MM-dd");
-        jPanel4.add(AttendDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 160, -1));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel7.setText("Session");
@@ -231,6 +269,7 @@ public class InsertAttendence1 extends javax.swing.JFrame {
 
         Status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Absent", "Present" }));
         jPanel4.add(Status, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 110, 160, -1));
+        jPanel4.add(AttendDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 160, -1));
 
         jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 990, 220));
 
@@ -251,84 +290,14 @@ public class InsertAttendence1 extends javax.swing.JFrame {
     }//GEN-LAST:event_SidActionPerformed
 
     private void ResetBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetBtnActionPerformed
-        Sid.setText("");
-        DepatmentCombo.setSelectedItem("Select");
-        yearCombo.setSelectedItem("Select");
-        Status.setSelectedItem("Select");
-        TypeofLecture.setSelectedItem("Select");
-        CourseId.setSelectedItem("Select");
-        AttendDate.setDate(null);
-        //ProgressBar.setVisible(false);
-        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
-        model.setRowCount(0); 
-        updateTable();
+        Reset();
+        //updateTable();
         
     }//GEN-LAST:event_ResetBtnActionPerformed
 
     private void InsertBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InsertBtnActionPerformed
-        insertAttendance();
+        Insert();
     }//GEN-LAST:event_InsertBtnActionPerformed
-    public void insertAttendance() {
-        String query = "INSERT INTO attendance (userID, Department, CourseID, Status, Year, Session, Date) VALUES (?, ?, ?, ?, ?, ?, ?)";
-
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setString(1, Sid.getText());
-            System.out.println("sdd +++++++++++++++++++++"+Sid.getText());
-            statement.setString(2, (String) DepatmentCombo.getSelectedItem());
-            System.out.println("sdd +++++++++++++++++++++"+(String) DepatmentCombo.getSelectedItem());
-            statement.setString(3, (String) CourseId.getSelectedItem());
-            System.out.println("sdd +++++++++++++++++++++"+(String) CourseId.getSelectedItem());
-            statement.setString(4, (String) Status.getSelectedItem());
-             System.out.println("sdd +++++++++++++++++++++"+(String) Status.getSelectedItem());
-            statement.setString(5, (String) yearCombo.getSelectedItem());
-             System.out.println("sdd +++++++++++++++++++++"+(String) yearCombo.getSelectedItem());
-            statement.setString(6,(String) TypeofLecture.getSelectedItem());
-            System.out.println("sdd +++++++++++++++++++++"+(String) TypeofLecture.getSelectedItem());
-            java.util.Date selectedDate = AttendDate.getDate();
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            String dateString = dateFormat.format(selectedDate);
-            System.out.println("sdd +++++++++++++++++++++"+dateString);
-            
-            statement.setString(7, dateString);
-
-            statement.executeUpdate();
-            System.out.println("Attendance record inserted successfully");
-            updateTable();
-        } catch (SQLException ex) {
-            System.out.println("Error in inserting attendance record: " + ex.getMessage());
-        }
-    }
-
-    public void updateTable() {
-        System.out.println("Inside updateTable");
-        try {
-            Statement st = connection.createStatement();
-            String sql1 = "SELECT * FROM attendance ORDER BY userID, Date";
-            ResultSet rs = st.executeQuery(sql1);
-
-            DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
-            model.setRowCount(0);
-
-            while (rs.next()) {
-                String userId = rs.getString("userID");
-                String courseId = rs.getString("CourseID");
-                String date = rs.getString("Date");
-                String session = rs.getString("Session");
-                String department = rs.getString("Department");
-                String year = rs.getString("Year");
-                String status = rs.getString("Status");
-                String userID = rs.getString("userID");
-
-                String tbData[] = {userID, courseId, date, session, department, year, status};
-
-                model.addRow(tbData);
-            }
-
-            System.out.println("Exit updateTable");
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-    }
     
     private void jLabel16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel16MouseClicked
         officerAcc.back(officerAcc);
@@ -342,6 +311,7 @@ public class InsertAttendence1 extends javax.swing.JFrame {
         
         
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new InsertAttendence1().setVisible(true);
             }
@@ -381,4 +351,26 @@ public class InsertAttendence1 extends javax.swing.JFrame {
     private void date(java.util.Date date) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    @Override
+    public void SetValue() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void Referance() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void ShowTable() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void Update() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+   
 }
